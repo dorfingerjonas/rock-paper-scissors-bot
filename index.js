@@ -35,3 +35,15 @@ client.on('message', (msg) => {
         + ' the contact form or write me an email directly.\n';
 
         msg.channel.send(message);
+    } else if (msg.content === '!rps-rules' && !msg.author.bot) {
+        const message = 'Rock-Paper-Scissors Rules-Page\n'
+            + '-------------------------------------\n'
+            + 'If you get challenged by a player, you have to react to the game request within a minute, otherwise '
+            + ' the request will time out.'
+            + 'Afterwards, there will be a countdown (rock, paper, scissors), after the last word you have 1.5s time to'
+            + ' submit your item \n\nHow are the items called?\n'
+            + 'I have created a "shortcut" for you, to make the game easier. It is possible to submit the whole item'
+            + ' name (rock, paper, scissors) or just the first two letters (ro, pa, sc).';
+
+        msg.channel.send(message);
+    }
