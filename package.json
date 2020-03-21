@@ -1,0 +1,23 @@
+{
+  "name": "rock-paper-scissors-bot",
+  "version": "1.0.0",
+  "dependencies": {
+    "discord.js": "^12.0.2"
+  },
+  "description": "rock-paper-scissors discord bot",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorfingerjonas/rock-paper-scissors-bot.git"
+  },
+  "author": "Jonas Dorfinger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dorfingerjonas/rock-paper-scissors-bot/issues"
+  },
+  "homepage": "https://github.com/dorfingerjonas/rock-paper-scissors-bot#readme"
+}
