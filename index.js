@@ -4,6 +4,8 @@ const token = require('./auth').token;
 const players = {};
 let timeOut;
 
+client.login(token);
+
 client.on('ready', () => {
     console.log('Bot started...');
 });
@@ -79,4 +81,44 @@ function sendStartMessageAndContinueGame(channel, rivalId) {
         }, 60000);
     });
 }
+
+function startGame(channel) {
+    let answers = [];
+    let gameStarted = false;
+    channel.send('Are you ready? - Lets go!');
+
+    setTimeout(() => {
+        channel.send('rock');
+
+        setTimeout(() => {
+            channel.send('paper');
+
+            setTimeout(() => {
+                channel.send('scissors');
+                gameStarted = true;
+
+                setTimeout(() => {
+                    if (answers.length < 2) {
+                        channel.send('both of you have to write their items. If you do not remember the rules,'
+                            + 'type in ``!rps-rules`` Try again!');
+
+                        setTimeout(() => {
+                            answers = [];
+                            startGame(channel);
+                        }, 3500);
+                    } else {
+                        evaluateGame(channel, answers);
+                    }
+                }, 1500);
+            }, 1000);
+        }, 1000);
+    }, 2000);
+
+    client.on('message', (msg) => {
+        if (gameStarted && `${players.rival}&${players.author}`.includes(msg.author.id)) {
+            answers.push({item: msg.content, id: msg.author.id});
+        }
+    });
+}
+
 }
