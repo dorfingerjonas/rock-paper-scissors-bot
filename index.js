@@ -20,3 +20,7 @@ client.on('message', (msg) => {
         } else {
             msg.channel.send('Please mention your rival, e.g. ``!rps-start @ghopper``');
         }
+    } else if (msg.content === '!rps-stop' && !msg.author.bot) {
+        if (`${players.rival}&${players.author}`.includes(msg.author.id)) {
+            stopGame(msg.channel, `<@${msg.author.id}> stopped the game`);
+        }
