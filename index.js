@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = require('./auth').token;
+const players = {};
+let timeOut;
 
 client.on('ready', () => {
     console.log('Bot started...');
@@ -57,4 +59,24 @@ function getRivalId(msg) {
             return member[1]['user'].id;
         }
     }
+}
+
+function sendStartMessageAndContinueGame(channel, rivalId) {
+    channel.send(`<@${rivalId}>, please react to this message within one minute to accept the game.`).then(msg => {
+        msg.react('✅').then(() => {
+            client.on('messageReactionAdd', (msg, user) => {
+                const {message, emoji} = msg;
+
+                if (emoji.name === '✅' && message.reactions.cache.toJSON()[0].users.toString().includes(rivalId)) {
+                    startGame(channel);
+                    clearTimeout(timeOut);
+                }
+            });
+        });
+
+        timeOut = setTimeout(() => {
+            stopGame(channel, 'Request timed out -> game stopped');
+        }, 60000);
+    });
+}
 }
