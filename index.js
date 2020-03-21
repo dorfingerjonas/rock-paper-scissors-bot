@@ -128,4 +128,31 @@ function stopGame(channel, message) {
 
     clearTimeout(timeOut);
 }
+
+function evaluateGame(channel, answers) {
+    const possibilities = [
+        {item1: 'rock, ro', item2: 'paper, pa', winnerItem: 'paper, pa'},
+        {item1: 'paper, pa', item2: 'scissors, sc', winnerItem: 'scissors, sc'},
+        {item1: 'rock, ro', item2: 'scissors, sc', winnerItem: 'rock, ro'}
+    ];
+
+    if (!answers[0].item.includes(answers[1].item) && !answers[1].item.includes(answers[0].item)) {
+        for (let i = 0; i < possibilities.length; i++) {
+            if (possibilities[i].item1.includes(answers[0].item) || possibilities[i].item2.includes(answers[0].item)
+                && possibilities[i].item1.includes(answers[1].item) || possibilities[i].item2.includes(answers[1].item)) {
+                for (let j = 0; j < answers.length; j++) {
+                    if (possibilities[i].winnerItem.includes(answers[j].item)) {
+                        channel.send(`<@${answers[j].id}> wins`);
+                        stopGame(channel, false);
+                    }
+                }
+            }
+        }
+    } else {
+        channel.send(`it's a draw, play again!`);
+
+        setTimeout(() => {
+            startGame(channel);
+        }, 2000);
+    }
 }
