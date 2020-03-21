@@ -47,3 +47,14 @@ client.on('message', (msg) => {
 
         msg.channel.send(message);
     }
+});
+
+function getRivalId(msg) {
+    let rivalId = msg.content.replace('!rps-start', '');
+
+    for (const member of msg.channel.members) {
+        if (rivalId.includes(member[1]['user'].id)) {
+            return member[1]['user'].id;
+        }
+    }
+}
