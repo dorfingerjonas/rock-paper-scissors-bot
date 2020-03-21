@@ -121,4 +121,11 @@ function startGame(channel) {
     });
 }
 
+function stopGame(channel, message) {
+    if (message) {
+        channel.send(message);
+    }
+
+    clearTimeout(timeOut);
+}
 }
