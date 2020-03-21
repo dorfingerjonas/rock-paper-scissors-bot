@@ -19,7 +19,7 @@ https://discordapp.com/oauth2/authorize?&client_id=690868551535427605&scope=bot&
 
 If you get challenged by a player, you have to react to the game request within a minute, otherwise the request will time out. Afterwards, there will be a countdown (rock, paper, scissors), after the last word you have 1.5 seconds to submit your item.
 
-##### How are the items called?
+#### How are the items called?
 
 I have created a "shortcut" for you, to make the game easier. It is possible to submit the whole item name (rock, paper, scissors) or just the first two letters (ro, pa, sc).
 
